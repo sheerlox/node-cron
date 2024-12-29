@@ -626,6 +626,11 @@ describe('cron', () => {
 			);
 		}).toThrow();
 
+		// https://github.com/kelektiv/node-cron/issues/919
+		expect(() => {
+			new CronJob('0 1 30 3 *', () => {}, null, false, 'Europe/Lisbon');
+		}).toThrow();
+
 		expect(() => {
 			new CronJob(
 				'* * 24 * * *',
